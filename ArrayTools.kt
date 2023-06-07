@@ -29,12 +29,6 @@ fun averageArrayTester() {
     println(arrayAverage(arrayOf()))
 }
 
-class MyInt(var int: Int) {
-    fun equals(other: MyInt): Boolean {
-        return this.int == other.int
-    }
-}
-
 fun arrayContains(inputArray: Array<Int>, target: Int): Boolean {
     for (element in inputArray) {
         if (element == target) {
@@ -42,4 +36,29 @@ fun arrayContains(inputArray: Array<Int>, target: Int): Boolean {
         }
     }
     return false
+}
+
+fun reverseArray(inputArray: Array<Int>): Array<Int> {
+    val result = Array(inputArray.size) { 0 } // result is the same size as input with all elems = 0
+    val stack = ArrayDeque<Int>()
+    for (num in inputArray) {
+        stack.addLast(num) // equivalent of push for a normal stack
+    }
+    var index = 0
+    while (stack.isNotEmpty()) {
+        result[index++] = stack.removeLast()
+    }
+    return result
+}
+
+fun reverseArray(input: String): String {
+    var result = ""
+    val stack = ArrayDeque<Char>()
+    for (char in input) {
+        stack.addLast(char) // equivalent of push for a normal stack
+    }
+    while (stack.isNotEmpty()) {
+        result = "$result${stack.removeLast()}"
+    }
+    return result
 }
